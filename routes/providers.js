@@ -86,4 +86,33 @@ providersRouter.post('/', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /providers/{id}:
+ *  delete:
+ *    summary: Deletes Provider record.
+ *    tags:
+ *      - providers
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: integer
+ *        required: true
+ *        description: Provider ID.
+ *    responses:
+ *      200:
+ *        description: Provider deleted successfully.
+ *      204:
+ *        description: No Content.
+ */
+ providersRouter.delete('/:id', async (req, res) => {
+  try {
+    const deletedProvider = await ProviderModel.findByIdAndDelete(req.params.id);
+    res.status(200).json(deletedProvider);
+  } catch (error) {
+    res.status(204).json({ message: error.message });
+  }
+});
+
 export default providersRouter;
