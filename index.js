@@ -28,7 +28,7 @@ const swaggerOptions = {
       servers: [`localhost:${PORT}`]
     }
   },
-  apis: ['.routes/*.js']
+  apis: ['./routes/*.js']
 }
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
