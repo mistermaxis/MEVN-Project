@@ -1,12 +1,21 @@
-<script setup>
-import Header from './components/Header.vue';
-import TableHeader from './components/TableHeader.vue';
-</script>
-
 <template>
   <Header />
   <TableHeader />
+  <Suspense>
+    <template #default>
+      <ClientTable />
+    </template>
+    <template #fallback>
+      Loading
+    </template>
+  </Suspense>
 </template>
+
+<script setup>
+import Header from './components/Header.vue';
+import TableHeader from './components/TableHeader.vue';
+import ClientTable from './components/ClientTable.vue';
+</script>
 
 <style>
 #app {

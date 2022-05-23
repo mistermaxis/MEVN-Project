@@ -1,8 +1,8 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from 'dotenv/config';
 
 import swaggerJSDoc from 'swagger-jsdoc';
 import { serve, setup } from 'swagger-ui-express';
+import cors from 'cors';
 
 const PORT = 4000;
 
@@ -42,6 +42,7 @@ db.once('open', () => console.log('Connected to Database'));
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use('/api-docs', serve, setup(swaggerDocs));
 app.use('/clients', clientsRouter);
 app.use('/providers', providersRouter);
