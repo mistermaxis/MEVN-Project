@@ -13,10 +13,10 @@ const clientSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  providers: {
+  providers: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'provider'
-  } 
+  }]
 });
 
 const ClientModel = mongoose.model('client', clientSchema);
