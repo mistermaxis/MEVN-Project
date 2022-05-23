@@ -98,7 +98,7 @@ clientsRouter.post('/', async (req, res) => {
  *            providers:
  *              type: array
  *              items:
- *                $ref: '#/definitions/Provider'
+ *                type: string
  *    responses:
  *      200:
  *        description: Provider updated successfully.
@@ -122,7 +122,7 @@ clientsRouter.post('/', async (req, res) => {
  *      providers:
  *        type: array
  *        items:
- *          $ref: '#/definitions/Provider'
+ *          type: string
  */
 clientsRouter.put('/:id', async (req, res) => {
   try {
