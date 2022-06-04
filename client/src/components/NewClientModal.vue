@@ -80,7 +80,7 @@ async function addProvider(e) {
 }
 
 .modal-header {
-  color: darkslategrey;
+  color: #006994;
   border-bottom: 1px solid lightgray;
   padding: 1rem;
 }
@@ -140,7 +140,7 @@ async function addProvider(e) {
 }
 
 .form-input {
-  padding: 0.25rem 0;
+  padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   border-width: 2px;
   border-style: solid;
