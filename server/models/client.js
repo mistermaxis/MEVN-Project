@@ -7,16 +7,17 @@ const clientSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   phone: {
     type: String,
     required: true
   },
-  providers: {
+  providers: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'provider'
-  } 
+  }]
 });
 
 const ClientModel = mongoose.model('client', clientSchema);
