@@ -1,6 +1,6 @@
 <template>
   <div class="app-header">
-    <h1>Clients</h1>
+    <span>Clients</span>
     <CreateButton></CreateButton>
   </div>
 </template>
@@ -17,10 +17,13 @@ import CreateButton from "./CreateButton.vue";
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3%;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
 }
 
-h1 {
-  color: darkslategrey;
+span {
+  color: #006994;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.75rem 0;
 }
 </style>
