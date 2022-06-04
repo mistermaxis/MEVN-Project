@@ -5,13 +5,13 @@
         <h2>Edit Client</h2>
       </div>
 
-      <form @submit="e => addClient(e)" id="edit-form" class="new-form" action="">
+      <form @submit="e => editClient(e)" id="edit-form" class="new-form" action="">
         <label class="text-right" for="name">Name: </label>
         <input class="form-input" required type="text" name="name" id="name" :value=props.client.name>
         <label class="text-right" for="email">Email: </label>
-        <input class="form-input" required type="email" name="email" id="email">
+        <input class="form-input" required type="email" name="email" id="email" :value=props.client.email>
         <label class="text-right" for="phone">Phone: </label>
-        <input class="form-input" required type="tel" name="phone" id="phone">
+        <input class="form-input" required type="tel" name="phone" id="phone" :value=props.client.phone>
         <label class="text-right" for="provider-name">Providers:</label>
         <form @submit="e => addProvider(e)" class="new-provider">
           <input class="form-input provider-input" required type="text" name="provider-name" id="provider-name">
@@ -19,13 +19,14 @@
         </form>
       </form>
 
-      <ProviderList />
+      <ProviderList :client-providers="props.client.providers" />
       
       <div class="form-menu">
-        <button @click="emit('onEditClose')" class="button">Cancel</button>
-        <button form="create-form" class="button" type="submit">
-          Add Client
-        </button>
+        <button @click="deleteClient(props.client._id)" class="delete-client button">Delete Client</button>
+        <div class="form-button-container">
+          <button @click="emit('onEditClose')" class="button">Cancel</button>
+          <button form="edit-form" class="button" type="submit">Save Client</button>
+        </div>
       </div>
     </div>
   </div>
@@ -34,15 +35,14 @@
 <script setup>
 import useClients from '../modules/data-api';
 import ProviderList from './ProviderList.vue';
-const { insertClient, insertProvider } = useClients();
+const { updateClient, destroyClient, insertProvider } = useClients();
 const emit = defineEmits(['onEditClose']);
 
 const props = defineProps({
   client: Object,
-  openEdit: 0,
 })
 
-async function addClient(e) {
+async function editClient(e) {
   e.preventDefault();
   
   const checkBoxes = Array.from(document.getElementsByClassName('provider'));
@@ -56,10 +56,15 @@ async function addClient(e) {
     providers: [...providerIds],
   };
 
-  await insertClient(JSON.stringify(newClient));
+  await updateClient(JSON.stringify(newClient), props.client._id);
 
   e.target.reset();
 
+  emit('onEditClose');
+}
+
+async function deleteClient(id) {
+  await destroyClient(id);
   emit('onEditClose');
 }
 
@@ -85,7 +90,7 @@ async function addProvider(e) {
 }
 
 .modal-header {
-  color: darkslategrey;
+  color: #006994;
   border-bottom: 1px solid lightgray;
   padding: 1rem;
 }
@@ -145,7 +150,7 @@ async function addProvider(e) {
 }
 
 .form-input {
-  padding: 0.25rem 0;
+  padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   border-width: 2px;
   border-style: solid;
@@ -155,7 +160,22 @@ async function addProvider(e) {
   padding: 1rem;
   display: flex;
   column-gap: 0.5rem;
-  justify-content: end;
+  justify-content: space-between;
   border-top: 1px lightgray solid;
+}
+
+.delete-client {
+  justify-self: start;
+  background-color: #ef3038;
+  color: white;
+}
+
+.delete-client:hover {
+  background-color: #ff1111;
+}
+
+.form-button-container {
+  display: flex;
+  column-gap: 0.5rem;
 }
 </style>
