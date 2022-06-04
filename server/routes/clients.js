@@ -88,7 +88,7 @@ clientsRouter.post('/', async (req, res) => {
  *      200:
  *        description: Provider updated successfully.
  *      404:
- *        description: Error while updating Provider.
+ *        description: Error while updating Client.
  * definitions:
  *  Client:
  *    type: object
