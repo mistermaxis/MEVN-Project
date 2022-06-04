@@ -15,7 +15,7 @@
           }}</span>
       </div>
       <div class="edit">
-        <button class="edit_button" @click="editOpen = client._id">Edit</button>
+        <button class="edit-button" @click="editOpen = client._id">Edit</button>
         <Teleport to="#modal">
           <EditClientModal :client=client v-if="editOpen == client._id" @on-edit-close="editOpen = null" />
         </Teleport>
@@ -58,7 +58,7 @@ await load();
   justify-content: center;
 }
 
-.edit_button {
+.edit-button {
   flex-grow: 1;
   border: none;
   background: none;
