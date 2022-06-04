@@ -25,6 +25,6 @@
 }
 
 .header-item:last-of-type {
-  border-right: 1px solid
+  border-right: 1px gray solid;
 }
 </style>
