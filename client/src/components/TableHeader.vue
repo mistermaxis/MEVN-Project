@@ -19,7 +19,7 @@
   border-color: gray;
   border-style: solid;
   border-width: 1px 0px 1px 1px;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
   padding-bottom: 0.3rem;
   word-break: break-all;
 }
