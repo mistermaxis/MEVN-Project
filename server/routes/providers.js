@@ -1,5 +1,6 @@
 import { Router } from "express";
 import ProviderModel from "../models/provider.js";
+import ClientModel from "../models/client.js"
 const providersRouter = Router();
 
 /**
@@ -60,8 +61,8 @@ providersRouter.post('/', async (req, res) => {
  *        required: true
  *        description: Provider ID.
  *      - in: body
- *        name: name
- *        description: Provider name.
+ *        name: provider
+ *        description: Update data for Provider.
  *        schema:
  *          type: object
  *          required:
@@ -109,6 +110,11 @@ providersRouter.post('/', async (req, res) => {
  providersRouter.delete('/:id', async (req, res) => {
   try {
     const deletedProvider = await ProviderModel.findByIdAndDelete(req.params.id);
+    const clients = await ClientModel.find();
+    clients.forEach(async client => {
+      client.providers = [...client.providers.filter(provider => provider != req.params.id)];
+      await client.save();
+    })
     res.status(200).json(deletedProvider);
   } catch (error) {
     res.status(204).json({ message: error.message });
