@@ -35,6 +35,37 @@ export default function useClients() {
     }
   }
 
+  async function updateClient(newClient, clientId) {
+    try {
+      const res = await fetch(`http://localhost:4000/clients/${clientId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: newClient,
+      });
+      await res.json();
+      await load();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function destroyClient(clientId) {
+    try {
+      const res = await fetch(`http://localhost:4000/clients/${clientId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      await res.json();
+      await load();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   async function insertProvider(newProvider) {
     try {
       const res = await fetch('http://localhost:4000/providers', {
@@ -46,7 +77,6 @@ export default function useClients() {
       });
       await res.json();
       await load();
-      console.log(state.value.providers);
     } catch (e) {
       console.log(e);
     }
@@ -87,6 +117,8 @@ export default function useClients() {
     state: readonly(state),
     load,
     insertClient,
+    updateClient,
+    destroyClient,
     insertProvider,
     destroyProvider,
     updateProvider
