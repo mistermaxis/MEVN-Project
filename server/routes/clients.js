@@ -43,7 +43,11 @@ clientsRouter.get('/', async (req, res) => {
  *          $ref: '#/definitions/Client'
  *    responses:
  *      201:
- *        description: Client created successfully.
+ *        description: Newly created Client.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#definitions/Client'
  *      400:
  *        description: Error while creating Client.
  */
