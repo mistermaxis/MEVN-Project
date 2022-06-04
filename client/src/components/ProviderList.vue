@@ -18,10 +18,10 @@
         </div>
         <form @submit="(e) => submitUpdate(e)" name="provider-text" hidden>
           <span hidden name="provider-id">{{ provider._id }}</span>
-          <input type="text" name="update-provider" />
+          <input @focusout="e => cancelEdit(e)" type="text" name="update-provider" />
         </form>
         <div>
-          <button @click="(e) => editProvider(e)" class="icon-button">
+          <button @click="(e) => startEdit(e)" class="icon-button">
             <img src="../assets/edit.png" alt="Edit Provider" />
           </button>
           <button @click="deleteProvider(provider._id)" class="icon-button">
@@ -48,12 +48,18 @@ async function deleteProvider(id) {
   await destroyProvider(id);
 }
 
-async function editProvider(e) {
+async function startEdit(e) {
   const parentList = e.currentTarget.parentElement.parentElement;
   const providerCheckbox = parentList.children["provider-checkbox"];
   const providerText = parentList.children["provider-text"];
   providerCheckbox.setAttribute("hidden", "true");
   providerText.removeAttribute("hidden");
+}
+
+async function cancelEdit(e) {
+  const parent = e.target.parentElement.parentElement;
+  parent.children['provider-checkbox'].removeAttribute("hidden");
+  parent.children['provider-text'].setAttribute("hidden", true);
 }
 
 async function submitUpdate(e) {
