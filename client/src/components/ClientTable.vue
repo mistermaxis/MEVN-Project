@@ -14,8 +14,8 @@
                 .join(", ")
           }}</span>
       </div>
-      <div>
-        <button @click="editOpen = client._id">Edit</button>
+      <div class="edit">
+        <button class="edit_button" @click="editOpen = client._id">Edit</button>
         <Teleport to="#modal">
           <EditClientModal :client=client v-if="editOpen == client._id" @on-edit-close="editOpen = null" />
         </Teleport>
@@ -46,7 +46,7 @@ await load();
   border-color: lightgray;
   border-style: solid;
   border-width: 0px 0px 1px 1px;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
 }
 
 .edit {
@@ -54,13 +54,17 @@ await load();
   border-style: solid;
   border-width: 0px 1px 1px 1px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
 }
 
-.edit>a {
-  color: darkslategray;
-  text-align: center;
+.edit_button {
+  flex-grow: 1;
+  border: none;
+  background: none;
+  color: #006994;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .ellipsis {
