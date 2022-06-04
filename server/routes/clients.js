@@ -53,10 +53,7 @@ clientsRouter.get('/', async (req, res) => {
  */
 clientsRouter.post('/', async (req, res) => {
   const client = new ClientModel({
-    name: req.body.name,
-    email: req.body.email,
-    phone: req.body.phone,
-    providers: req.body.providers
+    ...req.body
   });
   try {
     const newClient = await client.save();
@@ -86,23 +83,7 @@ clientsRouter.post('/', async (req, res) => {
  *        name: client
  *        description: Updated Client.
  *        schema:
- *          type: object
- *          required:
- *            - name
- *            - email
- *            - phone
- *            - providers
- *          properties:
- *            name:
- *              type: string
- *            email:
- *              type: string
- *            phone:
- *              type: string
- *            providers:
- *              type: array
- *              items:
- *                type: string
+ *          $ref: '#/definitions/Client'
  *    responses:
  *      200:
  *        description: Provider updated successfully.
@@ -129,9 +110,9 @@ clientsRouter.post('/', async (req, res) => {
  *          type: string
  */
 clientsRouter.put('/:id', async (req, res) => {
+  const newClient = { ...req.body }
   try {
-    const client = await ClientModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    const updatedClient = await client.save();
+    const updatedClient = await ClientModel.findByIdAndUpdate(req.params.id, newClient);
     res.status(200).json(updatedClient);
   } catch (error) {
     res.status(404).json({ message: error.message });
