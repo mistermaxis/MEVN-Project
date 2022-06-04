@@ -1,14 +1,16 @@
 <template>
   <div>
-    <div v-if="error" class="fetch-error">{{ error }}</div>
-    <div class="client-table" v-else-if="clients" v-for="client in clients">
-      <span class="table-item">{{ client.name }}</span>
-      <span class="table-item">{{ client.email }}</span>
-      <span class="table-item">{{ client.phone }}</span>
-      <span v-for="provider in client.providers" class="table-item">{{ providers.find(p => p._id ==
-          provider).name
-      }}</span>
-      <a class="table-item edit" href="#">Edit</a>
+    <div v-if="state.error" class="fetch-error">{{ state.error }}</div>
+    <div class="client-table" v-else-if="state.clients" v-for="client in state.clients" :key="client._id">
+      <span :title="client.name" class="table-item word-break">{{ client.name }}</span>
+      <span :title="client.email" class="table-item ellipsis">{{ client.email }}</span>
+      <span :title="client.phone" class="table-item">{{ client.phone }}</span>
+      <div class="table-item">
+        <span class="word-break">
+          {{state.providers.filter(p => client.providers.includes(p._id))
+          .map(p => p.name).join(', ')}}</span>
+      </div>
+      <div class="edit"><a href="#">Edit</a></div>
     </div>
   </div>
 </template>
@@ -16,7 +18,7 @@
 <script setup>
 import useClients from '../modules/data-api';
 
-const { clients, providers, error, load } = useClients();
+const { state, load } = useClients();
 
 await load();
 </script>
@@ -24,7 +26,7 @@ await load();
 <style scoped>
 .client-table {
   display: grid;
-  grid-template-columns: 20% 20% 20% 30% 10%;
+  grid-template-columns: minmax(10%, 18%) minmax(15%, 24%) minmax(15%, 18%) minmax(20%, 40%) minmax(2.5rem, 3rem);
 }
 
 .table-item {
@@ -32,15 +34,29 @@ await load();
   border-style: solid;
   border-width: 0px 0px 1px 1px;
   padding: 0.5rem;
-  padding-bottom: 0.3rem;
-}
-
-a.edit {
-  border-right: 1px solid lightgray;
 }
 
 .edit {
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 0px 1px 1px 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit > a {
   color: darkslategray;
   text-align: center;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.word-break {
+  word-break: break-all;
 }
 </style>
