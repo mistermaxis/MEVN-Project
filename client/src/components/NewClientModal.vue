@@ -22,7 +22,7 @@
       <ProviderList />
       
       <div class="form-menu">
-        <button @click="emit('onCreateClose')" class="button">Cancel</button>
+        <button @click="emit('onNewClose')" class="button">Cancel</button>
         <button form="create-form" class="button" type="submit">
           Add Client
         </button>
@@ -35,7 +35,7 @@
 import useClients from '../modules/data-api';
 import ProviderList from './ProviderList.vue';
 const { insertClient, insertProvider } = useClients();
-const emit = defineEmits(['onCreateClose']);
+const emit = defineEmits(['onNewClose']);
 
 async function addClient(e) {
   e.preventDefault();
@@ -55,7 +55,7 @@ async function addClient(e) {
 
   e.target.reset();
 
-  emit('onCreateClose');
+  emit('onNewClose');
 }
 
 async function addProvider(e) {
