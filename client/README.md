@@ -1,7 +1,62 @@
-# Vue 3 + Vite
+# MEVN Client Management Project
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+> An app and API to manage clients and providers
 
-## Recommended IDE Setup
+## Built With
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- Node.js
+- Express.js
+- MongoDB
+- Vue.js
+
+## Prerequisites
+
+- Nodejs
+- MongoDB
+
+## Install
+
+- Nodejs
+- MongoDB
+
+## Getting Started
+
+- ### To get a local copy of the app, run the following command in your terminal:
+    - `git clone https://github.com/JEFFKAY16/MEVN-Project.git`
+- ### To install the necessary modules:
+    - Navigate to the `server` folder in your explorer or console and run:
+      - `npm i`
+    - Navigate to the `client` folder in your explorer or console and run:
+      - `npm i`
+
+## Run the following commands to run the app
+
+- ### Navigate to the `server` folder in your explorer or console and run:
+  - `npm run serve`
+- ### Navigate to the `client` folder in your explorer or console and run:
+  - `npm run dev`
+- ### To access the app, navigate in your internet browser to:
+
+  - [http://localhost:3000](http://localhost:3000)
+
+- ### To access the API documentation, navigate to:
+
+  - [http://localhost:4000/api-docs](http://localhost:4000/api-docs)
+
+
+## Author
+
+👤 **Maximiliano Diaz**
+
+- GitHub: [@mistermaxis](https://github.com/mistermaxis)
+- LinkedIn: [Maximiliano Diaz](https://www.linkedin.com/in/mistermaxis/)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues/).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
