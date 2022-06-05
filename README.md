@@ -6,23 +6,21 @@
 
 - Node.js
 - Express.js
-- MongoDB
+- Mongoose
 - Vue.js
 
 ## Prerequisites
 
 - Nodejs
-- MongoDB
 
 ## Install
 
 - Nodejs
-- MongoDB
 
 ## Getting Started
 
 - ### To get a local copy of the app, run the following command in your terminal:
-    - `git clone https://github.com/JEFFKAY16/MEVN-Project.git`
+    - `git clone https://github.com/mistermaxis/MEVN-Project.git`
 - ### To install the necessary modules:
     - Navigate to the `server` folder in your explorer or console and run:
       - `npm i`
