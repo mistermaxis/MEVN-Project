@@ -36,6 +36,12 @@ await load();
 </script>
 
 <style scoped>
+.fetch-error {
+  text-align: center;
+  padding: 1.25rem 0;
+  color: red;
+}
+
 .client-table {
   display: grid;
   grid-template-columns: minmax(10%, 18%) minmax(15%, 24%) minmax(15%, 18%) minmax(20%,
