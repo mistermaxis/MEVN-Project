@@ -33,7 +33,7 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
-mongoose.connect("mongodb://localhost/clients_api");
+mongoose.connect(process.env.DATABASE_URL);
 const db = mongoose.connection;
 
 db.on('error', (error) => console.log(error));
